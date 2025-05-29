@@ -79,4 +79,24 @@ function updateScreen() {
 }
 
 // ... rest of the script ...
-updateScreen();
+updateScreen();// Add event listeners for choices and restart
+document.getElementById("choice1").onclick = function () {
+    const segment = storySegments.find(s => s.id === currentSegment);
+    if (segment && segment.choice1Next) {
+        currentSegment = segment.choice1Next;
+        updateScreen();
+    }
+};
+
+document.getElementById("choice2").onclick = function () {
+    const segment = storySegments.find(s => s.id === currentSegment);
+    if (segment && segment.choice2Next) {
+        currentSegment = segment.choice2Next;
+        updateScreen();
+    }
+};
+
+document.getElementById("restart").onclick = function () {
+    currentSegment = 1;
+    updateScreen();
+};
